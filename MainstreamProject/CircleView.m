@@ -23,7 +23,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor blueColor];
+        
+        self.backgroundColor = [UIColor colorWithRed:0 green:153/255.0f blue:204/255.0f alpha:1];
         
         // Determine our start and stop angles for the arc (in radians)
         startAngle = M_PI * 1.5;
@@ -41,7 +42,7 @@
     self.progressLabel.frame = CGRectMake((rect.size.width / 2.0) - 125/2.0, (rect.size.height / 2.0) - 125/2.0, 125, 125);
     int progressInt = (int)ceilf(self.percent);
     [self.progressLabel setTextAlignment:NSTextAlignmentCenter];
-    self.progressLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:70];
+    self.progressLabel.font = [UIFont fontWithName:@"Helvetica" size:70];
     self.progressLabel.text = [NSString stringWithFormat:@"%d", progressInt];
     self.progressLabel.textColor = [UIColor whiteColor];
     
