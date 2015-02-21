@@ -23,7 +23,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor blueColor];
         
         // Determine our start and stop angles for the arc (in radians)
         startAngle = M_PI * 1.5;
@@ -38,25 +38,28 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    self.progressLabel.frame = CGRectMake((rect.size.width / 2.0) - 71/2.0, (rect.size.height / 2.0) - 45/2.0, 71, 45);
+    self.progressLabel.frame = CGRectMake((rect.size.width / 2.0) - 125/2.0, (rect.size.height / 2.0) - 125/2.0, 125, 125);
     int progressInt = (int)ceilf(self.percent);
     [self.progressLabel setTextAlignment:NSTextAlignmentCenter];
-    self.progressLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:42.5];
+    self.progressLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:70];
     self.progressLabel.text = [NSString stringWithFormat:@"%d", progressInt];
+    self.progressLabel.textColor = [UIColor whiteColor];
     
-    CAShapeLayer *circle=[CAShapeLayer layer];
-    circle.path=[UIBezierPath bezierPathWithArcCenter:CGPointMake(rect.size.width / 2, rect.size.height / 2)
-                                               radius: 130
-                                           startAngle:2*M_PI*0-M_PI_2
-                                             endAngle:2*M_PI*1-M_PI_2
-                                            clockwise:YES].CGPath;
-    circle.fillColor=[UIColor clearColor].CGColor;
-    circle.strokeColor=[UIColor blackColor].CGColor;
-    circle.lineWidth=4;
-    [self.layer addSublayer:circle];
+    UIBezierPath* fixedBezierPath = [UIBezierPath bezierPath];
+    
+    // Create our arc, with the correct angles
+    [fixedBezierPath addArcWithCenter:CGPointMake(rect.size.width / 2, rect.size.height / 2)
+                          radius:130
+                      startAngle:startAngle
+                        endAngle:endAngle
+                       clockwise:YES];
+    
+    // Set the display for the path, and stroke it
+    fixedBezierPath.lineWidth = 5;
+    [[UIColor blackColor] setStroke];
+    [fixedBezierPath stroke];
     
     UIBezierPath* bezierPath = [UIBezierPath bezierPath];
-    
     // Create our arc, with the correct angles
     [bezierPath addArcWithCenter:CGPointMake(rect.size.width / 2, rect.size.height / 2)
                           radius:130
@@ -66,7 +69,7 @@
     
     // Set the display for the path, and stroke it
     bezierPath.lineWidth = 20;
-    [[UIColor redColor] setStroke];
+    [[UIColor greenColor] setStroke];
     [bezierPath stroke];
 
 }
