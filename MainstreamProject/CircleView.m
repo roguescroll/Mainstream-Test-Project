@@ -60,8 +60,8 @@
     // Create our arc, with the correct angles
     [bezierPath addArcWithCenter:CGPointMake(rect.size.width / 2, rect.size.height / 2)
                           radius:130
-                      startAngle:endAngle
-                        endAngle:(startAngle - endAngle) * (_percent / 100.0) + endAngle
+                      startAngle:startAngle
+                        endAngle:(endAngle - startAngle) * (_percent / 100.0) + startAngle
                        clockwise:YES];
     
     // Set the display for the path, and stroke it

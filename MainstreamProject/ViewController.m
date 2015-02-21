@@ -24,7 +24,7 @@
     // Init our view
     [super viewDidLoad];
     circleView = [[CircleView alloc] initWithFrame:self.view.bounds];
-    circleView.percent = 100;
+    circleView.percent = 0;
     [self.view addSubview:circleView];
 }
 
@@ -37,8 +37,8 @@
 - (void)decrementSpin
 {
     // If we can decrement our percentage, do so, and redraw the view
-    if (circleView.percent > 0) {
-        circleView.percent = circleView.percent - 1;
+    if (circleView.percent < 100) {
+        circleView.percent = circleView.percent + 1;
         [circleView setNeedsDisplay];
     }
     else {
